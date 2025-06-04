@@ -128,6 +128,7 @@ The bridge requires a `.env` file with your configuration at runtime. The contai
 
 ```
 docker run --rm -it \
+  --name comfy-bridge \
   --env-file /path/to/your/.env \
   -v /path/to/your/.env:/app/.env:ro \
   comfy-bridge
