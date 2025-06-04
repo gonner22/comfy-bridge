@@ -108,4 +108,40 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Acknowledgements
 
 - [AI Power Grid](https://aipowergrid.io/) for the API
-- [ComfyUI](https://github.com/comfyanonymous/ComfyUI) for the local image generation backend 
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI) for the local image generation backend
+
+## Running the Bridge with Docker
+
+A Dockerfile is provided for easy deployment of the bridge in a containerized environment. This Docker image is based on Python 3.12 and is designed to work alongside an existing ComfyUI instance (which should be running in a separate container or host).
+
+### Build the Docker Image
+
+```
+docker build -t comfy-bridge .
+```
+
+### Run the Container
+
+The bridge requires a `.env` file with your configuration at runtime. The container will stop and print an error if `.env` is not present in the working directory (`/app`).
+
+**Recommended way:** Mount your `.env` file into the container:
+
+```
+docker run --rm -it \
+  --env-file /path/to/your/.env \
+  -v /path/to/your/.env:/app/.env:ro \
+  comfy-bridge
+```
+
+- The `--env-file` flag loads environment variables, but the bridge also expects the physical `.env` file to exist in `/app`. Mounting it as a volume ensures this.
+- No ports are exposed by this container, as it only acts as a bridge.
+- No other volumes are required unless you want to provide custom workflows or logs.
+- Logs are printed to the console (stdout) only.
+- If the `.env` file is missing, the container will exit with the message:
+  
+  `ERROR: Missing .env file in /app. Use --env-file or mount the file.`
+
+### Notes
+- This container does **not** include ComfyUI. Make sure your ComfyUI instance is running and accessible at the URL specified in your `.env` file.
+- No GPU support is included by default (CPU only).
+- You can rebuild the image if you update the code or dependencies. 
