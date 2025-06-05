@@ -129,6 +129,7 @@ The bridge requires a `.env` file with your configuration at runtime. The contai
 ```
 docker run --rm -it \
   --name comfy-bridge \
+  --network comfy-net \
   --env-file /path/to/your/.env \
   -v /path/to/your/.env:/app/.env:ro \
   comfy-bridge
@@ -145,4 +146,4 @@ docker run --rm -it \
 ### Notes
 - This container does **not** include ComfyUI. Make sure your ComfyUI instance is running and accessible at the URL specified in your `.env` file.
 - No GPU support is included by default (CPU only).
-- You can rebuild the image if you update the code or dependencies. 
+- You can rebuild the image if you update the code or dependencies.

@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Install system dependencies if needed (example: gcc, libffi-dev, etc.)
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
+    build-essential net-tools htop \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy only the necessary files
