@@ -15,12 +15,15 @@ The ComfyUI Bridge acts as a worker for the AI Power Grid network, receiving ima
 ## Installation
 
 1. Clone this repository or download the files
-2. Create a Python virtual environment (recommended):
+   ```
+   git clone --recurse-submodules https://github.com/gonner22/comfy-bride
+   ```
+3. Create a Python virtual environment (recommended):
    ```
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
-3. Install required packages:
+4. Install required packages:
    ```
    pip install -r requirements.txt
    ```
@@ -118,6 +121,10 @@ Before proceeding with the Docker installation, ensure your Linux system meets t
    - Required for cloning repositories
    - Install using your distribution's package manager (e.g., `apt install git`)
 
+### 0. Clone this repository or download the files
+   ```
+   git clone --recurse-submodules https://github.com/gonner22/comfy-bride
+   ```
 ### 1. Running SwarmUI+ComfyUI with Docker (Standard Version Only)
 
 1. Enter the SwarmUI folder:
